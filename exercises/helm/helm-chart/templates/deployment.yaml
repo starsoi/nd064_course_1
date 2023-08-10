@@ -29,5 +29,5 @@ spec:
         name: nginx-alpine
         resources:
           requests:
-            memory: {{ .Value.resources.memory }}
-            cpu: {{ .Value.resources.cpu }}
+            memory: {{ .Values.resources.memory }}
+            cpu: {{ .Values.resources.cpu }}
