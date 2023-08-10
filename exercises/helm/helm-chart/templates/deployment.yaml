@@ -27,3 +27,7 @@ spec:
       - image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullpolicy }}
         name: nginx-alpine
+        resources:
+          requests:
+            memory: {{ .Value.resources.memory }}
+            cpu: {{ .Value.resources.cpu }}
