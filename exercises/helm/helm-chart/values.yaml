@@ -6,8 +6,8 @@ image:
   tag: alpine
   pullpolicy: IfNotPresent
 resources:
-  cpu: 50m
-  memory: 256Mi
+  cpu: "50m"
+  memory: "256Mi"
 service:
   type: ClusterIP
   port: 8111

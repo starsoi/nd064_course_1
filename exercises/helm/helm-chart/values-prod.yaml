@@ -5,8 +5,8 @@ image:
   name: nginx
   tag: 1.17.0
 resources:
-  cpu: 70m
-  memory: 256Mi
+  cpu: "70m"
+  memory: "256Mi"
 service:
   type: ClusterIP
   port: 80
