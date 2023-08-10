@@ -1,0 +1,16 @@
+namespace:
+  name: prod
+replica: 2
+image:
+  name: nginx
+  tag: 1.17.0
+resources:
+  cpu: 70m
+  memory: 256Mi
+service:
+  type: ClusterIP
+  port: 80
+configmap:
+  data:
+    version: 1.17.0
+
