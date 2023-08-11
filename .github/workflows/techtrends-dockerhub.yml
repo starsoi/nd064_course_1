@@ -1,6 +1,6 @@
 name: "TechTrends - Pakcage with Docker"
 
-trigger:
+on:
   push:
     branches:
       - main
