@@ -1,3 +1,4 @@
+import logging
 import sqlite3
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
@@ -21,12 +22,7 @@ def get_post(post_id):
 # Define the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
-
-# Define the route to non-existing page
-@app.errorhandler(404)
-def page_not_found(e):
-    app.logger.error(f'Page not found: {e}')
-    return render_template('404.html'), 404
+app.logger.setLevel(logging.INFO)
 
 # Define the main route of the web application 
 @app.route('/')
@@ -41,12 +37,13 @@ def index():
 @app.route('/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
-    app.logger.info(f'Article "{post.title}" retrieved!')
 
     if post is None:
-      return render_template('404.html'), 404
+        app.logger.info(f'Article with id "{post_id}" does not exist!')
+        return render_template('404.html'), 404
     else:
-      return render_template('post.html', post=post)
+        app.logger.info('Article "{}" retrieved!'.format(post['title']))
+        return render_template('post.html', post=post)
 
 # Define the About Us page
 @app.route('/about')
