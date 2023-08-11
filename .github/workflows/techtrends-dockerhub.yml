@@ -27,4 +27,4 @@ jobs:
         with:
           context: ./project
           push: true
-          tag: ${{ secrets.DOCKERHUB_USERNAME }}/techtrends:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/techtrends:latest
