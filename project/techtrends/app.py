@@ -25,7 +25,7 @@ app.config['SECRET_KEY'] = 'your secret key'
 # Define the route to non-existing page
 @app.errorhandler(404)
 def page_not_found(e):
-    app.logging.error(f'Page not found: {e}')
+    app.logger.error(f'Page not found: {e}')
     return render_template('404.html'), 404
 
 # Define the main route of the web application 
@@ -41,7 +41,7 @@ def index():
 @app.route('/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
-    app.logging.info(f'Article "{post.title}" retrieved!')
+    app.logger.info(f'Article "{post.title}" retrieved!')
 
     if post is None:
       return render_template('404.html'), 404
@@ -51,7 +51,7 @@ def post(post_id):
 # Define the About Us page
 @app.route('/about')
 def about():
-    app.logging.info('About Us page retrieved!')
+    app.logger.info('About Us page retrieved!')
     return render_template('about.html')
 
 # Define the post creation functionality 
@@ -70,7 +70,7 @@ def create():
             connection.commit()
             connection.close()
 
-            app.logging.info(f'Article "{title}" created!')
+            app.logger.info(f'Article "{title}" created!')
 
             return redirect(url_for('index'))
 
