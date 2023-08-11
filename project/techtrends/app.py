@@ -22,6 +22,12 @@ def get_post(post_id):
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 
+# Define the route to non-existing page
+@app.errorhandler(404)
+def page_not_found(e):
+    app.logging.error(f'Page not found: {e}')
+    return render_template('404.html'), 404
+
 # Define the main route of the web application 
 @app.route('/')
 def index():
@@ -35,6 +41,8 @@ def index():
 @app.route('/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
+    app.logging.info(f'Article "{post.title}" retrieved!')
+
     if post is None:
       return render_template('404.html'), 404
     else:
@@ -43,6 +51,7 @@ def post(post_id):
 # Define the About Us page
 @app.route('/about')
 def about():
+    app.logging.info('About Us page retrieved!')
     return render_template('about.html')
 
 # Define the post creation functionality 
@@ -61,9 +70,26 @@ def create():
             connection.commit()
             connection.close()
 
+            app.logging.info(f'Article "{title}" created!')
+
             return redirect(url_for('index'))
 
     return render_template('create.html')
+
+# define a route for health checks
+@app.route('/healthz')
+def health():
+    return jsonify({'result': 'OK - healthy'})
+
+# define a route for metrics
+@app.route('/metrics')
+def metrics():
+    connection = get_db_connection()
+    post_count = connection.execute('SELECT COUNT(*) FROM posts').fetchone()[0]
+    connection.close()
+
+    # A Flask app is single threaded, thus the db_connection_count will always be 1
+    return jsonify({'db_connection_count': 1, 'post_count': post_count})
 
 # start the application on port 3111
 if __name__ == "__main__":
