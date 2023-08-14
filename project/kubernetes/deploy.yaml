@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techtrends
+  namespace: sandbox
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: starsoi/techtrends:latest
+        imagePullPolicy: IfNotPresent
+        name: techtrends
+        ports: 3111
+        - containerPort: 3111
+        resources: 
+          requests:
+            cpu: 250m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            prot: 3111
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3111
