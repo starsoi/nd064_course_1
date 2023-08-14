@@ -4,6 +4,9 @@ metadata:
   name: techtrends
   namespace: sandbox
 spec:
+  selector:
+    matchLabels:
+      name: techtrends
   replicas: 1
   template:
     spec:
