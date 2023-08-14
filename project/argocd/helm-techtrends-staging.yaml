@@ -16,4 +16,4 @@ spec:
     path: project/helm
     repoURL: https://github.com/starsoi/nd064_course_1
     targetRevision: HEAD
-syncPolicy: {}
+  syncPolicy: {}
