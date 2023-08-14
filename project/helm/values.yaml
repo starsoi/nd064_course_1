@@ -5,7 +5,7 @@ service:
   port: 4111
   targetPort: 3111
   protocol: TCP
-  type: CluserIP
+  type: ClusterIP
 
 image:
   repository: starsoi/techtrends
