@@ -23,7 +23,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            prot: 3111
+            port: 3111
         readinessProbe:
           httpGet:
             path: /healthz
