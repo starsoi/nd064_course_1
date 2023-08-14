@@ -4,18 +4,38 @@ import sqlite3
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
+error = False
+
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
 def get_db_connection():
-    connection = sqlite3.connect('database.db')
+    global error
+    try:
+        connection = sqlite3.connect('database.db')
+    except sqlite3.Error as e:
+        error = True
+        app.logger.error(f'Database connection error: {e}')
+        return None
+    error = False
     connection.row_factory = sqlite3.Row
     return connection
 
 # Function to get a post using its ID
 def get_post(post_id):
+    global error
     connection = get_db_connection()
-    post = connection.execute('SELECT * FROM posts WHERE id = ?',
+    if connection is None:
+        return None
+
+    try:
+        post = connection.execute('SELECT * FROM posts WHERE id = ?',
                         (post_id,)).fetchone()
+    except sqlite3.Error as e:
+        error = True
+        app.logger.error(f'Database query error: {e}')
+        return None
+
+    error = False
     connection.close()
     return post
 
@@ -27,10 +47,15 @@ app.logger.setLevel(logging.INFO)
 # Define the main route of the web application 
 @app.route('/')
 def index():
+    global error
     connection = get_db_connection()
-    posts = connection.execute('SELECT * FROM posts').fetchall()
+    try:
+        posts = connection.execute('SELECT * FROM posts').fetchall()
+    except sqlite3.Error as e:
+        error = True
+        app.logger.error(f'Database query error: {e}')
     connection.close()
-    return render_template('index.html', posts=posts)
+    return render_template('404.html'), 500
 
 # Define how each individual article is rendered 
 # If the post ID is not found a 404 page is shown
@@ -76,7 +101,10 @@ def create():
 # define a route for health checks
 @app.route('/healthz')
 def health():
-    return jsonify({'result': 'OK - healthy'})
+    if not error:
+        return jsonify({'result': 'OK - healthy'})
+    else:
+        return jsonify({'result': 'ERROR - unhealthy'}), 500
 
 # define a route for metrics
 @app.route('/metrics')
