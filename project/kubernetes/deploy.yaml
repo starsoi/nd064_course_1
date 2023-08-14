@@ -11,7 +11,7 @@ spec:
       - image: starsoi/techtrends:latest
         imagePullPolicy: IfNotPresent
         name: techtrends
-        ports: 3111
+        ports: 
         - containerPort: 3111
         resources: 
           requests:
