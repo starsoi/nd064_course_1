@@ -1,8 +1,10 @@
 import logging
 import sqlite3
+import sys
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
+
 
 num_connection = 0
 
@@ -17,7 +19,6 @@ class DbConnection:
     def __exit__(self, *exc_details):
         global num_connection
         if self._conn:
-            num_connection -=1
             self._conn.close()
 
     # Function to get a database connection.
@@ -37,7 +38,10 @@ def get_post(post_id):
 # Define the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
-app.logger.setLevel(logging.DEBUG)
+
+stdout_handler = logging.StreamHandler(sys.stdout)
+stderr_handler = logging.StreamHandler(sys.stderr)
+logging.basicConfig(level=logging.DEBUG, handlers=[stdout_handler, stderr_handler])
 
 # Define the main route of the web application 
 @app.route('/')
@@ -100,7 +104,7 @@ def metrics():
         post_count = connection.execute('SELECT COUNT(*) FROM posts').fetchone()[0]
 
     # A Flask app is single threaded, thus the db_connection_count will always be 1
-    app.logger.debug('Current metrics revtried!')
+    app.logger.debug('Current metrics retrieved!')
     return jsonify({'db_connection_count': num_connection, 'post_count': post_count})
 
 # start the application on port 3111
