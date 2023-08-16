@@ -16,35 +16,27 @@ docker logs strange_perlman
  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
-172.17.0.1 - - [11/Aug/2023 15:16:01] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:01] "GET /static/css/main.css HTTP/1.1" 304 -
-[2023-08-11 15:16:03,327] INFO in app: Article "CNCF Cloud Native Definition v1.0" retrieved!
-172.17.0.1 - - [11/Aug/2023 15:16:03] "GET /5 HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:03] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [11/Aug/2023 15:16:46] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:46] "GET /static/css/main.css HTTP/1.1" 304 -
-[2023-08-11 15:16:47,713] INFO in app: Article "2020 CNCF Annual Report" retrieved!
-172.17.0.1 - - [11/Aug/2023 15:16:47] "GET /1 HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:47] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [11/Aug/2023 15:16:48] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:48] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [11/Aug/2023 15:16:51] "GET /create HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:51] "GET /static/css/main.css HTTP/1.1" 304 -
-[2023-08-11 15:16:59,756] INFO in app: Article "new post " created!
-172.17.0.1 - - [11/Aug/2023 15:16:59] "POST /create HTTP/1.1" 302 -
-172.17.0.1 - - [11/Aug/2023 15:16:59] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:16:59] "GET /static/css/main.css HTTP/1.1" 304 -
-[2023-08-11 15:17:02,461] INFO in app: Article "new post " retrieved!
-172.17.0.1 - - [11/Aug/2023 15:17:02] "GET /7 HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:17:02] "GET /static/css/main.css HTTP/1.1" 304 -
-[2023-08-11 15:17:09,842] INFO in app: Article with id "999" does not exist!
-172.17.0.1 - - [11/Aug/2023 15:17:09] "GET /999 HTTP/1.1" 404 -
-172.17.0.1 - - [11/Aug/2023 15:17:09] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [11/Aug/2023 15:17:53] "GET /metrics HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:18:05] "GET /create HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:18:05] "GET /static/css/main.css HTTP/1.1" 304 -
-[2023-08-11 15:18:11,493] INFO in app: Article "new2" created!
-172.17.0.1 - - [11/Aug/2023 15:18:11] "POST /create HTTP/1.1" 302 -
-172.17.0.1 - - [11/Aug/2023 15:18:11] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [11/Aug/2023 15:18:11] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [11/Aug/2023 15:18:17] "GET /metrics HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:01:49] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:01:49] "GET /static/css/main.css HTTP/1.1" 304 -
+[2023-08-16 10:01:51,039] DEBUG in app: Article "Kubernetes v1.20 Release Notes" retrieved!
+172.17.0.1 - - [16/Aug/2023 10:01:51] "GET /3 HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:01:51] "GET /static/css/main.css HTTP/1.1" 304 -
+[2023-08-16 10:01:54,892] DEBUG in app: Article "CNCF Cloud Native Interactive Landscape" retrieved!
+172.17.0.1 - - [16/Aug/2023 10:01:54] "GET /4 HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:01:54] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [16/Aug/2023 10:01:57] "GET /create HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:01:57] "GET /static/css/main.css HTTP/1.1" 304 -
+[2023-08-16 10:02:03,476] DEBUG in app: Article "new post" created!
+172.17.0.1 - - [16/Aug/2023 10:02:03] "POST /create HTTP/1.1" 302 -
+172.17.0.1 - - [16/Aug/2023 10:02:03] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:02:03] "GET /static/css/main.css HTTP/1.1" 304 -
+[2023-08-16 10:02:06,205] DEBUG in app: Article "new post" retrieved!
+172.17.0.1 - - [16/Aug/2023 10:02:06] "GET /8 HTTP/1.1" 200 -
+172.17.0.1 - - [16/Aug/2023 10:02:06] "GET /static/css/main.css HTTP/1.1" 304 -
+[2023-08-16 10:02:12,223] DEBUG in app: Current metrics revtried!
+172.17.0.1 - - [16/Aug/2023 10:02:12] "GET /metrics HTTP/1.1" 200 -
+[2023-08-16 10:02:18,019] DEBUG in app: Health status retrieved!
+172.17.0.1 - - [16/Aug/2023 10:02:18] "GET /healthz HTTP/1.1" 200 -
+[2023-08-16 10:02:22,156] DEBUG in app: Article with id "999" does not exist!
+172.17.0.1 - - [16/Aug/2023 10:02:22] "GET /999 HTTP/1.1" 404 -
+172.17.0.1 - - [16/Aug/2023 10:02:22] "GET /static/css/main.css HTTP/1.1" 304 -
